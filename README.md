@@ -17,14 +17,13 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 # File entropy source
 Another interesting aspect is the temporal independence between generating the entropy and applying it in the context of randonauting. You can generate entropy and use it for randonauting at any time later. The results of randonauting should be similar as if you would generate entropy directly, for example by ANU.
 
-When chosing File as entropy source, you need to have a binary file with random bytes on your phone. You could generate this file with some RNG hardware device or download it from [random.org](https://www.random.org/bytes/). You need to pay attention to not use a file twice for generating attractors, since the "Randonauting" effects are not guaranteed then.
-
+If you choose a file as entropy source, you must have a binary file with random bytes on your phone. You can generate this file with a RNG hardware device or download it from [random.org](https://www.random.org/bytes/). You must be careful not to use a file more than once to generate attractors, because then the "randonauting" effects are not guaranteed.
 
 # To-do
-- Make user interface nice and more user friendly
-- ANU became limited to once request per minute. Improve handling with it
+- Improvement of the user interface and more usability.
+- ANU has been limited to one request per minute. Improve the handling of it.
 - Implement support for other entropy sources, e.g. [random.org](https://www.random.org/bytes/)
-- The code contains logic for accessing an homebrew TRNG devices via the USB port. This functionalit has been outcommented from the UI.
+- Code includes logic for accessing a homebuilt TRNG device via the USB port. This feature has been removed from the UI to not confuse the user.
 
 # Download
 
