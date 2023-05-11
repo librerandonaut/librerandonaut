@@ -32,7 +32,6 @@ TODO
 
 [<img src="docs/fdroid.png" alt="Get it on F-Droid" height="90">](https://f-droid.org/packages/librerandonaut/)
 [<img src="docs/apk.png" alt="Get it on GitHub" height="90">](https://github.com/librerandonaut/librerandonaut/releases)
-[<img src="docs/gplay.png" alt="Get it on Google Play" height="90">](https://play.google.com/store/apps/details?id=app.librerandonaut)
 
 # Screenshots
 
