@@ -42,6 +42,7 @@ If you provide a file, make sure it contains enough entropy. To generate one att
 - Improve the handling of ANU API. E.g. show request errors; add a retry button, etc.
 - Implement support for other entropy sources, e.g. downloading raw data automatically from [random.org](https://www.random.org/bytes/)
 - Code includes logic for accessing a homebuilt TRNG device via the USB port. This feature has been removed from the UI to not confuse the user.
+- The old ANU API will be scaled back until it is eventually retired. The new AWS hosted ANU API requires a API-key and is limited to 100 requests per months for the trail tier. See [quantumnumbers.anu.edu.au/faq](https://quantumnumbers.anu.edu.au/faq). Implement functionality for providing an API-key via the LibreRandonaut app.
 
 # Download
 
