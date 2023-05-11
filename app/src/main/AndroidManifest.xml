@@ -9,16 +9,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.librerandonaut.librerandonaut.MainActivity">
+        <activity android:name="com.librerandonaut.librerandonaut.MainActivity"
+            android:exported="true" >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN" android:exported="true" />
+                <category android:name="android.intent.category.LAUNCHER" android:exported="true" />
             </intent-filter>
         </activity>
     </application>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" android:exported="true"  />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" android:exported="true"  />
+    <uses-permission android:name="android.permission.INTERNET" android:exported="true"  />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" android:exported="true"  />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" android:exported="true"  />
 </manifest>

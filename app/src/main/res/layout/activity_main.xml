@@ -155,7 +155,8 @@
         <RadioButton
             android:id="@+id/radioButtonGaussKde2"
             android:layout_width="90dp"
-            android:text="KDE 2"></RadioButton>
+            android:text="KDE 2"
+            tools:visibility="visible"></RadioButton>
     </RadioGroup>
 
     <Button

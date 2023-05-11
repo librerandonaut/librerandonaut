@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
@@ -21,33 +22,15 @@ public class OnlineEntropyManager implements IEntropyManager {
     private final int REQUEST_ENTROPY_MAX_SIZE = 16000;
 
     private static String download(URL urlString) throws Exception {
-        StringBuilder sb = null;
-        URL url;
-        URLConnection urlCon;
-        try {
-            url = urlString;
-            urlCon = url.openConnection();
-            BufferedReader in = null;
-            if (urlCon.getHeaderField("Content-Encoding") != null
-                    && urlCon.getHeaderField("Content-Encoding").equals("gzip")) {
-                in = new BufferedReader(new InputStreamReader(new GZIPInputStream(urlCon.getInputStream())));
-            } else {
-                in = new BufferedReader(new InputStreamReader(urlCon.getInputStream()));
+        try (InputStream input = urlString.openStream()) {
+            InputStreamReader isr = new InputStreamReader(input);
+            BufferedReader reader = new BufferedReader(isr);
+            StringBuilder json = new StringBuilder();
+            int c;
+            while ((c = reader.read()) != -1) {
+                json.append((char) c);
             }
-            String inputLine;
-            sb = new StringBuilder();
-
-            while ((inputLine = in.readLine()) != null) {
-                sb.append(inputLine);
-            }
-            in.close();
-        } catch (IOException e) {
-            System.out.println("Exception while reading JSON from URL - {}" + e.toString());
-        }
-        if (sb != null) {
-            return sb.toString();
-        } else {
-            throw new Exception("Nothing downloaded.");
+            return json.toString();
         }
     }
     private IProgressHandler progressHandler;
