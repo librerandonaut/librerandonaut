@@ -7,6 +7,16 @@ It interfaces with the [QRNG at the Australian National University](https://qrng
 
 If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots and Quantum Randomness, I recommend reading [fatum_theory.txt](https://github.com/anonyhoney/fatum-en/blob/master/docs/fatum_theory.txt) that came with the original Fatum project bot that inspired Randonautica. If you have no idea what this is about and are completely new to this field, you should read [this article](https://medium.com/swlh/randonauts-how-a-random-number-generator-can-set-you-free-dfc2a2413e15).
 
+## Table of contents
+* [Usage](#usage)
+* [Entropy sources](#entropy-sources)
+	* [ANU](#anu)
+	* [File](#file)
+* [To-do](#to-do)
+* [Download](#download)
+* [Screenshots](#screenshots)
+
+
 # Usage
 - Enable GPS in your phone
 - Chose the entropy source
@@ -15,12 +25,12 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 - When generation finishes, press Open to open the attractor's location in a navigation app
 
 # Entropy sources
-# ANU
+## ANU
 See [QRNG at the Australian National University](https://qrng.anu.edu.au/). 
 
 Unfortunately, the API for ANU was limited to one request per minute. For the generation of an attractor within a radius of 1000 meters two requests are needed. Practical tests have shown that a waiting time of 60 seconds is not sufficient. Currently there is a waiting time of 120 seconds, but this could possibly be reduced.
 
-# File
+## File
 Another interesting aspect is the temporal independence between generating the entropy and applying it in the context of randonauting. You can generate entropy and use it for randonauting at any time later. The results of randonauting should be similar as if you would generate entropy directly, for example by ANU.
 
 If you choose a file as entropy source, you must have a binary file with random bytes on your phone. You can generate this file with a RNG hardware device or download it from [random.org](https://www.random.org/bytes/). You must be careful not to use a file more than once to generate attractors, because then the "randonauting" effects are not guaranteed.
