@@ -19,8 +19,9 @@ public class RandomPointsProvider implements IRandomPointsProvider {
 
     public static int getEntropyUsage(int radius) {
         int pointsCount = getPointsCount(radius);
-        // 2 points, 4 byte per point for integer, 100% margin
-        return pointsCount * 2 * 4 * 2;
+        // 2 points, 4 byte per point for integer
+        // TODO check if this is always enough (unit test...)
+        return pointsCount * 2 * 4;
     }
 
     public HashSet<Coordinates> getRandomPoints(Coordinates center, int radius) throws Exception {

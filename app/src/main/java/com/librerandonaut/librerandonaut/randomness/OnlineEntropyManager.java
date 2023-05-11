@@ -15,6 +15,8 @@ import java.util.zip.GZIPInputStream;
 
 import com.librerandonaut.librerandonaut.rngdevice.IProgressHandler;
 
+// TODO Add support for random.org. Request data directly from them.
+// TODO Rename to AnuEntropyManager
 public class OnlineEntropyManager implements IEntropyManager {
     static final String TAG = "OnlineEntropyManager";
 
@@ -61,6 +63,16 @@ public class OnlineEntropyManager implements IEntropyManager {
         updateProgress(progressHandler, 0);
         for(int j = 1; j <= iterations; j++)
         {
+            if(j > 1) {
+                // TODO it's 60s according to the error message, but it was never enough. find our, what the minimum wait time is.
+                Thread.sleep(120000);
+                // ANU changed their policy to one request per minute sadly.
+                // Generating attactors for 1000m radius requires 100 points.
+                // 100 points need 800 bytes of entropy.
+                // 800 bytes of entropy needs 2 requests to ANU, that means an additional minute of wait time.
+                // An alternative to ANU would be downloading a large file of random data from random.org and using that with the "File" option.
+            }
+            // TODO when there is an error with downloading the entropy, display the error in the UI
             String jsonString = download(new URL(url));
             JSONObject jsonObject = new JSONObject(jsonString);
 
