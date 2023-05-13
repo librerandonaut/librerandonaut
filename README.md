@@ -47,8 +47,8 @@ If you provide a file, make sure it contains enough entropy. To generate one att
 
 # Download
 TODO
-<!---   [<img src="img/fdroid.png" alt="Get it on F-Droid" height="90">](https://f-droid.org/packages/librerandonaut/)           -->
-[<img src="img/apk.png" alt="Get it on GitHub" height="90">](https://github.com/librerandonaut/librerandonaut/releases)
+<!---   [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="75">](https://f-droid.org/packages/librerandonaut/)           -->
+[<img src="img/apk.png" alt="Get it on GitHub" height="75">](https://github.com/librerandonaut/librerandonaut/releases)
 
 # Screenshots
 
