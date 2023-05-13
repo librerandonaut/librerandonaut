@@ -45,10 +45,8 @@ If you provide a file, make sure it contains enough entropy. To generate one att
 - The old ANU API will be scaled back until it is eventually retired. The new AWS hosted ANU API requires a API-key and is limited to 100 requests per months for the trail tier. See [quantumnumbers.anu.edu.au/faq](https://quantumnumbers.anu.edu.au/faq). Implement functionality for providing an API-key via the LibreRandonaut app.
 
 # Download
-
 TODO
-
-[<img src="img/fdroid.png" alt="Get it on F-Droid" height="90">](https://f-droid.org/packages/librerandonaut/)
+<!---   [<img src="img/fdroid.png" alt="Get it on F-Droid" height="90">](https://f-droid.org/packages/librerandonaut/)           -->
 [<img src="img/apk.png" alt="Get it on GitHub" height="90">](https://github.com/librerandonaut/librerandonaut/releases)
 
 # Screenshots
