@@ -15,7 +15,7 @@ public class TestRandomProvider implements IRandomProvider {
 
     public TestRandomProvider() throws IOException {
         Path workingDir = Paths.get("", "src/test/resources");
-        Path file = workingDir.resolve("entropy");
+        Path file = workingDir.resolve("entropyForTests");
         randomProvider = new RandomProvider(Files.readAllBytes(file), RandomSource.File);
     }
 
