@@ -53,6 +53,5 @@ TODO
 
 # Screenshots
 
-<img src="metadata/en-US/images/phoneScreenshots/1.png" width="170">
-<img src="metadata/en-US/images/phoneScreenshots/2.png" width="170">
+<img src="metadata/en-US/images/phoneScreenshots/1.png" width="170"> <img src="metadata/en-US/images/phoneScreenshots/2.png" width="170">
 
