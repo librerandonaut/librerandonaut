@@ -1,5 +1,12 @@
 apply plugin: 'com.android.application'
 
+task build_kde(type:Exec) {
+    workingDir 'libs/kde'
+    commandLine 'ant'
+}
+
+preBuild.dependsOn build_kde
+
 android {
     compileSdkVersion 30
     defaultConfig {
@@ -36,7 +43,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     testImplementation 'org.json:json:20180130'
     implementation 'androidx.documentfile:documentfile:1.0.1'
-    implementation files('libs/kde/bits_kde.jar')
-    implementation files('libs/kde/bits_fft.jar')
+    implementation files('libs/kde/target/bits_kde.jar')
     implementation 'com.google.code.gson:gson:2.8.6'
 }
