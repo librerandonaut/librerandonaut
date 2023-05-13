@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 30
     defaultConfig {
-        applicationId "com.librerandonaut.librerandonaut"
+        applicationId "com.github.librerandonaut.librerandonaut"
         minSdkVersion 30
         targetSdkVersion 30
         versionCode 1
