@@ -1,0 +1,3 @@
+[submodule "app/libs/kde"]
+	path = app/libs/kde
+	url = https://github.com/decamp/kde
