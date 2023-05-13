@@ -1,6 +1,7 @@
 # LibreRandonaut
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
+<img align="left" src="metadata/en-US/images/icon.png" width="170">
 LibreRandonaut is an open-source Android app for generating true random coordinates that allow users to explore their surroundings and perform the activity "randonauting". 
 
 It interfaces with the [QRNG at the Australian National University](https://qrng.anu.edu.au/), where it obtains a list of quantum random numbers, converts them to coordinates, and then computes the Gaussian kernel density estimate of those coordinates to find a point with a statistically anomalous density.
