@@ -37,7 +37,7 @@
 
     <TextView
         android:id="@+id/labelDevice"
-        android:layout_width="254dp"
+        android:layout_width="234dp"
         android:layout_height="45dp"
         android:layout_marginStart="16dp"
         android:lines="2"
@@ -164,7 +164,7 @@
 
     <Button
         android:id="@+id/buttonGenerate"
-        android:layout_width="121dp"
+        android:layout_width="141dp"
         android:layout_height="41dp"
         android:layout_marginTop="16dp"
         android:onClick="onButtonGenerateTouch"

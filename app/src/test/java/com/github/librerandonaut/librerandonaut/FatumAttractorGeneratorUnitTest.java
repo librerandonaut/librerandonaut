@@ -14,6 +14,8 @@ import com.github.librerandonaut.librerandonaut.attractor.RandomPointsProvider;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
+// TODO: Fix tests
+
 public class FatumAttractorGeneratorUnitTest {
     private IAttractorGenerator attractorGenerator;
     private TestRandomPointsProvider randomPointsProvider;

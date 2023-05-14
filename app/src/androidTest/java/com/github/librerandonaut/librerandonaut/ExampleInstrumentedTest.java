@@ -21,7 +21,6 @@ public class ExampleInstrumentedTest {
     public void useAppContext() {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-
-        assertEquals("com.librerandonaut.librerandonaut", appContext.getPackageName());
+        assertEquals("com.github.librerandonaut.librerandonaut", appContext.getPackageName());
     }
 }

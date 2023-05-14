@@ -227,8 +227,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
         }
 
+        // TODO: Disabled TRNG USB device
         // USB Devices
-        deviceHandler.requestPermissions();
+        // deviceHandler.requestPermissions();
     }
 
     public void onLabelAttractorDataTouch(View view) throws Exception {

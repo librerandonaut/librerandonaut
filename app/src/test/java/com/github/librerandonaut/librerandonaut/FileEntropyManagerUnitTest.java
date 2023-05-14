@@ -1,8 +1,8 @@
 /*
-package com.librerandonaut.librerandonaut;
+package com.github.librerandonaut.librerandonaut;
 
 import org.junit.Test;
-import com.librerandonaut.librerandonaut.randomness.FileEntropyManager;
+import com.github.librerandonaut.librerandonaut.randomness.FileEntropyManager;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
