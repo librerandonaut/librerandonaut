@@ -13,8 +13,7 @@ import java.net.URL;
 import com.github.librerandonaut.librerandonaut.rngdevice.IProgressHandler;
 
 // TODO Add support for random.org. Request data directly from them.
-// TODO Rename to AnuEntropyManager
-public class OnlineEntropyManager implements IEntropyManager {
+public class AnuEntropyManager implements IEntropyManager {
     static final String TAG = "OnlineEntropyManager";
 
     private final int REQUEST_ENTROPY_SIZE = 512;
@@ -34,7 +33,7 @@ public class OnlineEntropyManager implements IEntropyManager {
     }
     private IProgressHandler progressHandler;
 
-    public OnlineEntropyManager(IProgressHandler progressHandler) {
+    public AnuEntropyManager(IProgressHandler progressHandler) {
         this.progressHandler = progressHandler;
     }
 

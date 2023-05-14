@@ -48,7 +48,7 @@ import com.github.librerandonaut.librerandonaut.attractor.RandomPointsProvider;
 import com.github.librerandonaut.librerandonaut.randomness.DeviceEntropyManager;
 import com.github.librerandonaut.librerandonaut.randomness.FileEntropyManager;
 import com.github.librerandonaut.librerandonaut.randomness.IRandomProvider;
-import com.github.librerandonaut.librerandonaut.randomness.OnlineEntropyManager;
+import com.github.librerandonaut.librerandonaut.randomness.AnuEntropyManager;
 import com.github.librerandonaut.librerandonaut.randomness.RandomSource;
 import com.github.librerandonaut.librerandonaut.randomness.SystemEntropyManager;
 import com.github.librerandonaut.librerandonaut.rngdevice.DeviceHandler;
@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 default:
                 case Anu:
                     try {
-                        randomProvider = new OnlineEntropyManager(this).loadRandomProvider(entropyUsage);
+                        randomProvider = new AnuEntropyManager(this).loadRandomProvider(entropyUsage);
                     } catch (Exception e) {
                         Log.w(TAG, e);
                     }
