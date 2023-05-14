@@ -26,7 +26,7 @@ public class DeviceHandler implements IDeviceHandler {
         UsbManager manager = (UsbManager) applicationConxt.getSystemService(Context.USB_SERVICE);
 
         PendingIntent permissionIntent;
-        permissionIntent = PendingIntent.getBroadcast(applicationConxt.getApplicationContext(), 0, new Intent(ACTION_USB_PERMISSION), 0);
+        permissionIntent = PendingIntent.getBroadcast(applicationConxt.getApplicationContext(), 0, new Intent(ACTION_USB_PERMISSION), PendingIntent.FLAG_IMMUTABLE);
 
         Map<String, UsbDevice> usbDevices = manager.getDeviceList();
         for (UsbDevice usbDevice : usbDevices.values()) {
