@@ -1,1 +1,1 @@
-LibreRandonaut is an open-source Android app for generating true random coordinates that allow users to explore their surroundings and perform the activity "randonauting". 
+Randonauting - explore your surroundings with quantum randomness
