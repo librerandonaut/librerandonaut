@@ -1,3 +1,4 @@
+/*
 package com.github.librerandonaut.librerandonaut.attractor;
 
 import android.os.Build;
@@ -73,3 +74,4 @@ public class Kde2AttractorGenerator extends BaseAttractorGenerator implements IA
         return new Attractor(attractorPoint, test, points, this.getClass(), this.randomPointsProvider.getRandomProvider().getRandomSource());
     }
 }
+*/

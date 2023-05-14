@@ -267,12 +267,16 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         /*if (radioButtonFatum.isChecked()) {
             generatorType = AttractorGeneratorType.Fatum;
         } else */
+
+        // TODO: Disabled kde2 because its library (libs/kde/target/bits_kde.jar) does not build correctly with f-droid
+        generatorType = AttractorGeneratorType.Kde1;
+        /*
         if(radioButtonGaussKde1.isChecked()) {
             generatorType = AttractorGeneratorType.Kde1;
         } else if(radioButtonGaussKde2.isChecked()) {
             generatorType = AttractorGeneratorType.Kde2;
         }
-
+        */
         GenerateAsyncTask asyncTask = new GenerateAsyncTask();
         AttractorGenerationRequest request = new AttractorGenerationRequest();
         request.coordinates = coordinates;

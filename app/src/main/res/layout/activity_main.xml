@@ -150,13 +150,16 @@
             android:id="@+id/radioButtonGaussKde1"
             android:layout_width="90dp"
             android:checked="true"
-            android:text="KDE 1"></RadioButton>
+            android:text="KDE 1"
+            android:visibility="gone"
+            tools:visibility="gone"></RadioButton>
 
         <RadioButton
             android:id="@+id/radioButtonGaussKde2"
             android:layout_width="90dp"
             android:text="KDE 2"
-            tools:visibility="visible"></RadioButton>
+            android:visibility="gone"
+            tools:visibility="gone"></RadioButton>
     </RadioGroup>
 
     <Button

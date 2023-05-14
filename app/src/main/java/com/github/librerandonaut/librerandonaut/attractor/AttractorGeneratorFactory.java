@@ -10,8 +10,9 @@ public class AttractorGeneratorFactory {
                 return new FatumAttractorGenerator(new RandomPointsProvider((randomProvider)));
             case Kde1:
                 return new Kde1AttractorGenerator(new RandomPointsProvider((randomProvider)));
-            case Kde2:
-                return new Kde2AttractorGenerator(new RandomPointsProvider((randomProvider)));
+            // TODO: Kde2 is disabled until library builds
+            //case Kde2:
+                //return new Kde2AttractorGenerator(new RandomPointsProvider((randomProvider)));
         }
     }
 }
