@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class RandomDotOrgEntropyManager implements IEntropyManager {
     static final String TAG = "RandomDotOrgEntropyManager";
-    private final int REQUEST_ENTROPY_MAX_SIZE = 1000000 / 8;   // One million bits
+    public static final int REQUEST_ENTROPY_MAX_SIZE = 1000000 / 8;   // One million bits
     private final int BUFFER_SIZE = 100;
     private final String DOWNLOAD_URL = "https://www.random.org/cgi-bin/randbyte?nbytes=%s&format=f";
     private final String EMAIL_ADDRESS = "librerandonaut@protonmail.com";

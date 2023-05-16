@@ -1,6 +1,7 @@
 package com.github.librerandonaut.librerandonaut;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -40,6 +41,10 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.github.librerandonaut.librerandonaut.attractor.Attractor;
 import com.github.librerandonaut.librerandonaut.attractor.AttractorGeneratorFactory;
@@ -338,6 +343,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     public class GenerateAsyncTask extends AsyncTask<AttractorGenerationRequest, Integer, AttractorGenerationResult>
             implements IProgressHandler {
         private final static String ENTROPY_BYTE_INDEX_PREFIX = "entropy_byte_index_";
+        private final static String RANDOM_DOT_ORG_QUOTA = "random_dot_org_quota";
+        private final static String RANDOM_DOT_ORG_QUOTA_TIMESTAMP = "random_dot_org_quota_timestamp";
 
         @RequiresApi(api = Build.VERSION_CODES.O)
         protected void onProgressUpdate(Integer... progress) {
@@ -348,43 +355,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         protected AttractorGenerationResult doInBackground(AttractorGenerationRequest... requests) {
 
             AttractorGenerationResult result = new AttractorGenerationResult();
-
-            LoadRandomProviderResult loadRandomProviderResult = null;
             int entropyUsage = RandomPointsProvider.getEntropyUsage(requests[0].radius);
-
-            try {
-                switch (requests[0].randomSource) {
-                    case File:
-                        loadRandomProviderResult = new FileEntropyManager(selectedFile, MainActivity.this).loadRandomProvider(entropyUsage);
-                        IRandomProvider randomProvider = loadRandomProviderResult.getRandomProvider();
-                        if(randomProvider != null) {
-                            int hashCode = randomProvider.getHashCode();
-                            result.bytesHashCode = hashCode;
-                            int byteIndex = sharedPref.getInt(ENTROPY_BYTE_INDEX_PREFIX + hashCode, 0);
-                            Log.w(TAG, "Read byte index " + byteIndex + " for hash " + result.bytesHashCode);
-                            randomProvider.setByteIndex(byteIndex);
-                        }
-                        break;
-                    case System:
-                        loadRandomProviderResult = new SystemEntropyManager().loadRandomProvider(entropyUsage);
-                        break;
-                    case Device:
-                        DeviceEntropyManager deviceEntropyManager = new DeviceEntropyManager(deviceHandler, this);
-                        loadRandomProviderResult = deviceEntropyManager.loadRandomProvider(entropyUsage);
-                        break;
-                    default:
-                    case RandomDotOrg:
-                        loadRandomProviderResult = new RandomDotOrgEntropyManager(this).loadRandomProvider(entropyUsage);
-                        break;
-                    case Anu:
-                        loadRandomProviderResult = new AnuEntropyManager(this).loadRandomProvider(entropyUsage);
-                        break;
-                }
-            } catch (Exception e) {
-                Log.w(TAG, e);
-            }
-
             Log.v(TAG, "entropyUsage =" + entropyUsage);
+            LoadRandomProviderResult loadRandomProviderResult = getLoadRandomProviderResult(result, entropyUsage, requests);
 
             if (loadRandomProviderResult != null && loadRandomProviderResult.getRandomProvider() != null) {
                 Log.v(TAG, "getByteIndex =" + loadRandomProviderResult.getRandomProvider().getByteIndex());
@@ -406,23 +379,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 if (randomProvider != null && randomProvider.hasEntropyLeft(entropyUsage)) {
                     Log.v(TAG, "generating attractor");
 
-                    int byteIndexBefore = randomProvider.getByteIndex();
-                    IAttractorGenerator generator = AttractorGeneratorFactory.getAttractorGenerator(requests[0].attractorGeneratorType, randomProvider);
-
-                    try {
-                        result.attractor = generator.getAttractor(requests[0].coordinates, requests[0].radius);
-                        result.entropyAsString = randomProvider.getUsedEntropyAsString(byteIndexBefore, entropyUsage);
-                        Log.v(TAG, "attractor generated");
-                    } catch (Exception e) {
-                        Log.v(TAG, "attractor generation failed. " + e);
-                    }
-
-                    int byteIndexAfter = randomProvider.getByteIndex();
-                    Log.v(TAG, "byteIndexAfter =" + byteIndexAfter);
-
-                    result.byteIndexAfter = byteIndexAfter;
-                    result.byteIndexBefore = byteIndexBefore;
-                    result.bytesLeft = randomProvider.getEntropyPoolSize() - byteIndexAfter;
+                    generateAttractor(result, entropyUsage, randomProvider, requests);
 
                 } else if (randomProvider != null) {
                     result.status = "no entropy left";
@@ -435,6 +392,92 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             publishProgress(100);
             return result;
+        }
+
+        private void generateAttractor(AttractorGenerationResult result, int entropyUsage, IRandomProvider randomProvider, AttractorGenerationRequest[] requests) {
+            int byteIndexBefore = randomProvider.getByteIndex();
+            IAttractorGenerator generator = AttractorGeneratorFactory.getAttractorGenerator(requests[0].attractorGeneratorType, randomProvider);
+
+            try {
+                result.attractor = generator.getAttractor(requests[0].coordinates, requests[0].radius);
+                result.entropyAsString = randomProvider.getUsedEntropyAsString(byteIndexBefore, entropyUsage);
+                Log.v(TAG, "attractor generated");
+            } catch (Exception e) {
+                Log.v(TAG, "attractor generation failed. " + e);
+            }
+
+            int byteIndexAfter = randomProvider.getByteIndex();
+            Log.v(TAG, "byteIndexAfter =" + byteIndexAfter);
+
+            result.byteIndexAfter = byteIndexAfter;
+            result.byteIndexBefore = byteIndexBefore;
+            result.bytesLeft = randomProvider.getEntropyPoolSize() - byteIndexAfter;
+        }
+
+        @Nullable
+        private LoadRandomProviderResult getLoadRandomProviderResult(AttractorGenerationResult result, int entropyUsage, AttractorGenerationRequest[] requests) {
+            LoadRandomProviderResult loadRandomProviderResult = null;
+            try {
+                switch (requests[0].randomSource) {
+                    case File:
+                        loadRandomProviderResult = new FileEntropyManager(selectedFile, MainActivity.this).loadRandomProvider(entropyUsage);
+                        {
+                            IRandomProvider randomProvider = loadRandomProviderResult.getRandomProvider();
+                            if (randomProvider != null) {
+                                int hashCode = randomProvider.getHashCode();
+                                result.bytesHashCode = hashCode;
+                                int byteIndex = sharedPref.getInt(ENTROPY_BYTE_INDEX_PREFIX + hashCode, 0);
+                                Log.w(TAG, "Read byte index " + byteIndex + " for hash " + result.bytesHashCode);
+                                randomProvider.setByteIndex(byteIndex);
+                            }
+                        }
+                        break;
+                    case System:
+                        loadRandomProviderResult = new SystemEntropyManager().loadRandomProvider(entropyUsage);
+                        break;
+                    case Device:
+                        DeviceEntropyManager deviceEntropyManager = new DeviceEntropyManager(deviceHandler, this);
+                        loadRandomProviderResult = deviceEntropyManager.loadRandomProvider(entropyUsage);
+                        break;
+                    case Anu:
+                        loadRandomProviderResult = new AnuEntropyManager(this).loadRandomProvider(entropyUsage);
+                        break;
+                    default:
+                    case RandomDotOrg:
+                        int randomDotOrgQuota = sharedPref.getInt(RANDOM_DOT_ORG_QUOTA, 0);
+                        long randomDotOrgQuotaTimestamp = sharedPref.getLong(RANDOM_DOT_ORG_QUOTA_TIMESTAMP, 0);
+                        long currentTimestamp = System.currentTimeMillis();
+                        if (currentTimestamp - randomDotOrgQuotaTimestamp > 24 * 60 * 60 * 1000) // 24 hours
+                        {
+                            randomDotOrgQuota = 0;
+                        }
+
+                        if (randomDotOrgQuota >= (RandomDotOrgEntropyManager.REQUEST_ENTROPY_MAX_SIZE))
+                        {
+                            // Entropy quota was used up
+                            Log.w(TAG, "Entropy quota was used up. Quota = " + randomDotOrgQuota);
+                            loadRandomProviderResult = null;
+                            result.randomDotOrgQuota = randomDotOrgQuota;
+                            result.randomDotOrgQuotaTimestamp = randomDotOrgQuotaTimestamp;
+                        }
+                        else
+                        {
+                            loadRandomProviderResult = new RandomDotOrgEntropyManager(this).loadRandomProvider(entropyUsage);
+                            {
+                                IRandomProvider randomProvider = loadRandomProviderResult.getRandomProvider();
+                                if (randomProvider != null) {
+                                    randomDotOrgQuota += randomProvider.getEntropyPoolSize();
+                                    result.randomDotOrgQuota = randomDotOrgQuota;
+                                    result.randomDotOrgQuotaTimestamp = currentTimestamp;
+                                }
+                            }
+                        }
+                        break;
+                }
+            } catch (Exception e) {
+                Log.w(TAG, e);
+            }
+            return loadRandomProviderResult;
         }
 
         @Override
@@ -459,9 +502,12 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             buttonOpen.setEnabled(true);
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putInt(ENTROPY_BYTE_INDEX_PREFIX + result.bytesHashCode, result.byteIndexAfter);
+            editor.putInt(RANDOM_DOT_ORG_QUOTA, result.randomDotOrgQuota);
+            editor.putLong(RANDOM_DOT_ORG_QUOTA_TIMESTAMP, result.randomDotOrgQuotaTimestamp);
             Log.w(TAG, "Saved byte index " + result.byteIndexAfter + " for hash " + result.bytesHashCode);
-
+            Log.w(TAG, "Saved randomDotOrgQuota " + result.randomDotOrgQuota + " for timestamp " + result.randomDotOrgQuotaTimestamp);
             editor.commit();
+
             int usedBytes = result.byteIndexAfter - result.byteIndexBefore;
             int bytesLeft = result.bytesLeft;
 

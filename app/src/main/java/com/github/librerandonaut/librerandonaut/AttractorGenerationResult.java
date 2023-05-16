@@ -10,4 +10,6 @@ public class AttractorGenerationResult {
     public String status;
     public String entropyAsString;
     public int bytesHashCode;
+    public int randomDotOrgQuota;
+    public long randomDotOrgQuotaTimestamp;
 }
