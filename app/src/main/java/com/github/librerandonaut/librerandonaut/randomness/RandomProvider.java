@@ -66,7 +66,7 @@ public class RandomProvider implements IRandomProvider {
 
     public byte nextByte() throws Exception {
         if(byteIndex >= data.length)
-            throw new Exception("Entropy size exceeded. Size = " + data.length);
+            throw new Exception(String.format("Entropy size exceeded. byteIndex = %s Size = %s", byteIndex, data.length));
 
         return data[byteIndex++];
     }

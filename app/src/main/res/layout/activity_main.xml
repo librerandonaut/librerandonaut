@@ -10,6 +10,7 @@
         android:id="@+id/labelAttractorData"
         android:layout_width="392dp"
         android:layout_height="113dp"
+        android:layout_marginStart="5dp"
         android:clickable="true"
         android:lines="100"
         android:maxLines="100"
@@ -23,6 +24,7 @@
         android:layout_width="393dp"
         android:layout_height="287dp"
         android:scrollbars="vertical"
+        android:visibility="invisible"
         app:layout_constraintStart_toStartOf="@+id/buttonOpen"
         app:layout_constraintTop_toBottomOf="@+id/labelAttractorData" />
 
@@ -71,8 +73,9 @@
 
     <TextView
         android:id="@+id/label"
-        android:layout_width="78dp"
+        android:layout_width="81dp"
         android:layout_height="25dp"
+        android:layout_marginStart="5dp"
         android:layout_marginTop="16dp"
         android:lines="1"
         android:maxLines="1"
@@ -123,14 +126,19 @@
         app:layout_constraintTop_toBottomOf="@+id/labelLocation">
 
         <RadioButton
-            android:id="@+id/radioButtonAnu"
-            android:layout_width="70dp"
+            android:id="@+id/radioButtonRandomDotOrg"
+            android:layout_width="120dp"
             android:checked="true"
+            android:text="random.org"></RadioButton>
+
+        <RadioButton
+            android:id="@+id/radioButtonAnu"
+            android:layout_width="120dp"
             android:text="ANU"></RadioButton>
 
         <RadioButton
             android:id="@+id/radioButtonFile"
-            android:layout_width="70dp"
+            android:layout_width="120dp"
             android:text="File"></RadioButton>
 
     </RadioGroup>

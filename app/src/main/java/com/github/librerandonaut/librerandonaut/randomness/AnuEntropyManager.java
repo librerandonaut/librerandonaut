@@ -12,12 +12,13 @@ import java.net.URL;
 
 import com.github.librerandonaut.librerandonaut.rngdevice.IProgressHandler;
 
-// TODO Add support for random.org. Request data directly from them.
 public class AnuEntropyManager implements IEntropyManager {
-    static final String TAG = "OnlineEntropyManager";
+    static final String TAG = "AnuEntropyManager";
 
     private final int REQUEST_ENTROPY_SIZE = 512;
     private final int REQUEST_ENTROPY_MAX_SIZE = 16000;
+
+    private final String DOWNLOAD_URL = "https://qrng.anu.edu.au/API/jsonI.php?length=%s&type=hex16&size=1";
 
     private static String download(URL urlString) throws Exception {
         try (InputStream input = urlString.openStream()) {
@@ -39,7 +40,7 @@ public class AnuEntropyManager implements IEntropyManager {
 
     private void updateProgress(IProgressHandler progressHandler, int percent) {
         if(progressHandler != null) {
-            progressHandler.updateProcess(percent);
+            progressHandler.updateProgress(percent);
         }
     }
 
@@ -54,7 +55,7 @@ public class AnuEntropyManager implements IEntropyManager {
 
         byte[] entropy = new byte[bufferSize * iterations];
 
-        String url = "https://qrng.anu.edu.au/API/jsonI.php?length=" + REQUEST_ENTROPY_SIZE + "&type=hex16&size=1";
+        String url = String.format(DOWNLOAD_URL, REQUEST_ENTROPY_SIZE);
 
         updateProgress(progressHandler, 0);
         for(int j = 1; j <= iterations; j++)

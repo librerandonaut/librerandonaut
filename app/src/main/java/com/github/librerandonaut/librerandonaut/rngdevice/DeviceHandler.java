@@ -36,7 +36,7 @@ public class DeviceHandler implements IDeviceHandler {
 
     private void updateProgress(IProgressHandler progressHandler, int percent) {
         if(progressHandler != null) {
-            progressHandler.updateProcess(percent);
+            progressHandler.updateProgress(percent);
         }
     }
 

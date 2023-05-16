@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.github.librerandonaut.librerandonaut.randomness.RandomDotOrgEntropyManager;
 import com.google.gson.Gson;
 
 import java.io.IOException;
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private TextView labelAttractorData;
     private TextView labelRandomData;
     private RadioButton radioButtonAnu;
+    private RadioButton radioButtonRandomDotOrg;
     private RadioButton radioButtonFile;
     private RadioButton radioButtonDevice;
     private RadioButton radioButtonSystem;
@@ -134,6 +136,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         labelLocation = findViewById(R.id.labelLocation);
         labelAttractor = findViewById(R.id.labelAttractor);
         radioButtonAnu = findViewById(R.id.radioButtonAnu);
+        radioButtonRandomDotOrg = findViewById(R.id.radioButtonRandomDotOrg);
         radioButtonFile = findViewById(R.id.radioButtonFile);
         //radioButtonDevice = findViewById(R.id.radioButtonDevice);
         //radioButtonSystem = findViewById(R.id.radioButtonSystem);
@@ -256,6 +259,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
         if (radioButtonAnu.isChecked()) {
             randomSource = RandomSource.Anu;
+        } else if (radioButtonRandomDotOrg.isChecked()) {
+            randomSource = RandomSource.RandomDotOrg;
         } else if (radioButtonFile.isChecked()) {
             randomSource = RandomSource.File;
         } else if (radioButtonDevice.isChecked()) {
@@ -371,6 +376,13 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     randomProvider = deviceEntropyManager.loadRandomProvider(entropyUsage);
                     break;
                 default:
+                case RandomDotOrg:
+                    try {
+                        randomProvider = new RandomDotOrgEntropyManager(this).loadRandomProvider(entropyUsage);
+                    } catch (Exception e) {
+                        Log.w(TAG, e);
+                    }
+                    break;
                 case Anu:
                     try {
                         randomProvider = new AnuEntropyManager(this).loadRandomProvider(entropyUsage);
@@ -471,7 +483,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         }
 
         @Override
-        public void updateProcess(int percent) {
+        public void updateProgress(int percent) {
             publishProgress(percent);
         }
     }
