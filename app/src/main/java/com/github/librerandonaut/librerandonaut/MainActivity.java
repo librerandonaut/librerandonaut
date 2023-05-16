@@ -237,7 +237,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             }
         }
 
-        // TODO: Disabled TRNG USB device
+        // TODO: TRNG USB device disabled
         // USB Devices
         // deviceHandler.requestPermissions();
     }
@@ -453,6 +453,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                         int randomDotOrgQuota = sharedPref.getInt(RANDOM_DOT_ORG_QUOTA, 0);
                         long randomDotOrgQuotaTimestamp = sharedPref.getLong(RANDOM_DOT_ORG_QUOTA_TIMESTAMP, 0);
                         long currentTimestamp = System.currentTimeMillis();
+
+                        /* TODO: This is only a simple quota handling with a reset every 24h.
+                            A better handling would be to check for errors from the http request and
+                            then set a cool down timeout of 4-5 hours. See random.org FAQ.
+                        */
                         if (currentTimestamp - randomDotOrgQuotaTimestamp > 24 * 60 * 60 * 1000) // 24 hours
                         {
                             randomDotOrgQuota = 0;

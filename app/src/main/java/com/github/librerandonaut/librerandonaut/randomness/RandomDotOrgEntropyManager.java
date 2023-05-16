@@ -31,7 +31,6 @@ public class RandomDotOrgEntropyManager implements IEntropyManager {
 
     @Override
     public LoadRandomProviderResult loadRandomProvider(int entropyUsage) throws Exception {
-        // TODO: Track total entropy usage
         if (entropyUsage > REQUEST_ENTROPY_MAX_SIZE)
             throw new Exception("entropyUsage " + entropyUsage + " exceeding REQUEST_ENTROPY_MAX_SIZE " + REQUEST_ENTROPY_MAX_SIZE);
 
