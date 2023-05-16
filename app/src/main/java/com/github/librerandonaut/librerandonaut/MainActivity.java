@@ -42,6 +42,7 @@ import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -312,6 +313,11 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             s += "nearestDistance: " + result.attractor.getAttractorTest().getNearestDistance();
             s += "\n";
             s += "usedBytes: " + (result.byteIndexAfter - result.byteIndexBefore) + ", bytesLeft: " + result.bytesLeft;
+            if(result.randomDotOrgQuota > 0) {
+                s += "\n";
+                double quotaPercent = (double) result.randomDotOrgQuota / (double) RandomDotOrgEntropyManager.REQUEST_ENTROPY_MAX_SIZE * 100;
+                s += "random.org quota: " + new DecimalFormat("#.#").format(quotaPercent) + "%";
+            }
             labelAttractorData.setText(s);
         }
 
