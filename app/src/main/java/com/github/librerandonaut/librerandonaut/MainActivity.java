@@ -34,6 +34,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.TextView;
 
+import com.github.librerandonaut.librerandonaut.randomness.LoadRandomProviderResult;
 import com.github.librerandonaut.librerandonaut.randomness.RandomDotOrgEntropyManager;
 import com.google.gson.Gson;
 
@@ -348,58 +349,55 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             AttractorGenerationResult result = new AttractorGenerationResult();
 
-            IRandomProvider randomProvider = null;
+            LoadRandomProviderResult loadRandomProviderResult = null;
             int entropyUsage = RandomPointsProvider.getEntropyUsage(requests[0].radius);
-            switch (requests[0].randomSource) {
-                case File:
-                    try {
-                        randomProvider = new FileEntropyManager(selectedFile, MainActivity.this).loadRandomProvider(entropyUsage);
-                        int hashCode = randomProvider.getHashCode();
-                        result.bytesHashCode = hashCode;
-                        int byteIndex = sharedPref.getInt(ENTROPY_BYTE_INDEX_PREFIX + hashCode, 0);
-                        Log.w(TAG, "Read byte index " + byteIndex + " for hash " + result.bytesHashCode);
-                        randomProvider.setByteIndex(byteIndex);
 
-                    } catch (Exception e) {
-                        Log.w(TAG, e);
-                    }
-                    break;
-                case System:
-                    try {
-                        randomProvider = new SystemEntropyManager().loadRandomProvider(entropyUsage);
-                    } catch (Exception e) {
-                        Log.w(TAG, e);
-                    }
-                    break;
-                case Device:
-                    DeviceEntropyManager deviceEntropyManager = new DeviceEntropyManager(deviceHandler, this);
-                    randomProvider = deviceEntropyManager.loadRandomProvider(entropyUsage);
-                    break;
-                default:
-                case RandomDotOrg:
-                    try {
-                        randomProvider = new RandomDotOrgEntropyManager(this).loadRandomProvider(entropyUsage);
-                    } catch (Exception e) {
-                        Log.w(TAG, e);
-                    }
-                    break;
-                case Anu:
-                    try {
-                        randomProvider = new AnuEntropyManager(this).loadRandomProvider(entropyUsage);
-                    } catch (Exception e) {
-                        Log.w(TAG, e);
-                    }
-                    break;
+            try {
+                switch (requests[0].randomSource) {
+                    case File:
+                        loadRandomProviderResult = new FileEntropyManager(selectedFile, MainActivity.this).loadRandomProvider(entropyUsage);
+                        IRandomProvider randomProvider = loadRandomProviderResult.getRandomProvider();
+                        if(randomProvider != null) {
+                            int hashCode = randomProvider.getHashCode();
+                            result.bytesHashCode = hashCode;
+                            int byteIndex = sharedPref.getInt(ENTROPY_BYTE_INDEX_PREFIX + hashCode, 0);
+                            Log.w(TAG, "Read byte index " + byteIndex + " for hash " + result.bytesHashCode);
+                            randomProvider.setByteIndex(byteIndex);
+                        }
+                        break;
+                    case System:
+                        loadRandomProviderResult = new SystemEntropyManager().loadRandomProvider(entropyUsage);
+                        break;
+                    case Device:
+                        DeviceEntropyManager deviceEntropyManager = new DeviceEntropyManager(deviceHandler, this);
+                        loadRandomProviderResult = deviceEntropyManager.loadRandomProvider(entropyUsage);
+                        break;
+                    default:
+                    case RandomDotOrg:
+                        loadRandomProviderResult = new RandomDotOrgEntropyManager(this).loadRandomProvider(entropyUsage);
+                        break;
+                    case Anu:
+                        loadRandomProviderResult = new AnuEntropyManager(this).loadRandomProvider(entropyUsage);
+                        break;
+                }
+            } catch (Exception e) {
+                Log.w(TAG, e);
             }
 
             Log.v(TAG, "entropyUsage =" + entropyUsage);
 
-            if (randomProvider != null) {
-                Log.v(TAG, "getByteIndex =" + randomProvider.getByteIndex());
-                Log.v(TAG, "getEntropyPoolSize =" + randomProvider.getEntropyPoolSize());
+            if (loadRandomProviderResult.getRandomProvider() != null) {
+                Log.v(TAG, "getByteIndex =" + loadRandomProviderResult.getRandomProvider().getByteIndex());
+                Log.v(TAG, "getEntropyPoolSize =" + loadRandomProviderResult.getRandomProvider().getEntropyPoolSize());
             }
 
             try {
+                if (!loadRandomProviderResult.getStatus())
+                {
+                    result.status = "loading random data failed: " + loadRandomProviderResult.getMessage();
+                    return result;
+                }
+                IRandomProvider randomProvider = loadRandomProviderResult.getRandomProvider();
                 if (randomProvider != null && randomProvider.hasEntropyLeft(entropyUsage)) {
                     Log.v(TAG, "generating attractor");
 
@@ -422,9 +420,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                     result.bytesLeft = randomProvider.getEntropyPoolSize() - byteIndexAfter;
 
                 } else if (randomProvider != null) {
-                    result.status = "no entropy left.";
+                    result.status = "no entropy left";
                 } else {
-                    result.status = "failed to initalize source";
+                    result.status = "failed to initialize source";
                 }
             } catch (Exception e) {
                 Log.w(TAG, e);

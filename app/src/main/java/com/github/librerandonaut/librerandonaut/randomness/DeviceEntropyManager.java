@@ -18,12 +18,12 @@ public class DeviceEntropyManager implements IEntropyManager {
 
 
     @Override
-    public IRandomProvider loadRandomProvider(int entropyUsage) {
+    public LoadRandomProviderResult loadRandomProvider(int entropyUsage) {
         Device device = deviceHandler.getProposedDevice();
         if( device != null) {
             DeviceResult result = deviceHandler.loadDataFromDevice(device, entropyUsage, progressHandler);
             if (result.success) {
-                return new RandomProvider(result.data, RandomSource.Device);
+                return new LoadRandomProviderResult(new RandomProvider(result.data, RandomSource.Device), true, "");
             } else {
                 Log.w("DeviceEntropyManager", "loading data not successful");
             }

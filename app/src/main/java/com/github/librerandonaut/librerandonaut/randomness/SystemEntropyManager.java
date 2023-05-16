@@ -9,7 +9,7 @@ public class SystemEntropyManager implements IEntropyManager {
     }
 
     @Override
-    public IRandomProvider loadRandomProvider(int entropyUsage) throws Exception {
-        return systemRandomSource;
+    public LoadRandomProviderResult loadRandomProvider(int entropyUsage) throws Exception {
+        return new LoadRandomProviderResult(systemRandomSource, true, "");
     }
 }

@@ -39,7 +39,7 @@ public class FileEntropyManager implements IEntropyManager {
     }
 
     @Override
-    public IRandomProvider loadRandomProvider(int entropyUsage) throws Exception {
-        return new RandomProvider(openPath(fileUri), RandomSource.File);
+    public LoadRandomProviderResult loadRandomProvider(int entropyUsage) throws Exception {
+        return new LoadRandomProviderResult(new RandomProvider(openPath(fileUri), RandomSource.File), true, "");
     }
 }

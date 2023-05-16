@@ -1,5 +1,5 @@
 package com.github.librerandonaut.librerandonaut.randomness;
 
 public interface IEntropyManager {
-    IRandomProvider loadRandomProvider(int entropyUsage) throws Exception;
+    LoadRandomProviderResult loadRandomProvider(int entropyUsage) throws Exception;
 }

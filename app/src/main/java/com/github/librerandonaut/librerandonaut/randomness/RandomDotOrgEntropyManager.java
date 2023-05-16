@@ -16,7 +16,8 @@ public class RandomDotOrgEntropyManager implements IEntropyManager {
     static final String TAG = "RandomDotOrgEntropyManager";
     private final int REQUEST_ENTROPY_MAX_SIZE = 1000000 / 8;   // One million bits
     private final int BUFFER_SIZE = 100;
-    private final String DOWNLOAD_URL = "https://www.random.org/cgi-bin/randbyte?nbytes=%s&format=f";
+    //private final String DOWNLOAD_URL = "https://www.random.org/cgi-bin/randbyte?nbytes=%s&format=f";
+    private final String DOWNLOAD_URL = "http://localhost/cgi-bin/randbyte?nbytes=%s&format=f";
     private final String EMAIL_ADDRESS = "librerandonaut@protonmail.com";
     private IProgressHandler progressHandler;
 
@@ -31,7 +32,7 @@ public class RandomDotOrgEntropyManager implements IEntropyManager {
     }
 
     @Override
-    public IRandomProvider loadRandomProvider(int entropyUsage) throws Exception {
+    public LoadRandomProviderResult loadRandomProvider(int entropyUsage) throws Exception {
         // TODO: Track total entropy usage
         if (entropyUsage > REQUEST_ENTROPY_MAX_SIZE)
             throw new Exception("entropyUsage " + entropyUsage + " exceeding REQUEST_ENTROPY_MAX_SIZE " + REQUEST_ENTROPY_MAX_SIZE);
@@ -58,26 +59,20 @@ public class RandomDotOrgEntropyManager implements IEntropyManager {
             int byteReadTotal = 0;
             int bytesRead = -1;
             while ((bytesRead = responseStream.read(buffer)) != -1) {
-                if(bytesRead < buffer.length)
-                {
-                    Log.v(TAG, String.format("bytesRead: %s", bytesRead));
-                }
-                Log.v(TAG, String.format("bytesRead: %s", bytesRead));
                 System.arraycopy(buffer, 0, entropy, byteReadTotal, bytesRead);
                 byteReadTotal += bytesRead;
                 updateProgress(progressHandler, (int)((double)byteReadTotal / (double)entropyUsage * 100));
                 buffer = new byte[BUFFER_SIZE];
             }
 
-            return new RandomProvider(entropy, RandomSource.RandomDotOrg);
+            return new LoadRandomProviderResult(new RandomProvider(entropy, RandomSource.RandomDotOrg), true, message);
         }
         else
         {
             int code = httpConn.getResponseCode();
-            String message = httpConn.getResponseMessage();
-            // TODO: Display message on UI
-            Log.v(TAG, String.format("Server returned error: %s %s", code, message));
-            return null;
+            String message = String.format("Server returned error: %s %s", code, httpConn.getResponseMessage());
+            Log.v(TAG, message);
+            return new LoadRandomProviderResult(null, false, message);
         }
     }
 }
