@@ -386,12 +386,17 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
             Log.v(TAG, "entropyUsage =" + entropyUsage);
 
-            if (loadRandomProviderResult.getRandomProvider() != null) {
+            if (loadRandomProviderResult != null && loadRandomProviderResult.getRandomProvider() != null) {
                 Log.v(TAG, "getByteIndex =" + loadRandomProviderResult.getRandomProvider().getByteIndex());
                 Log.v(TAG, "getEntropyPoolSize =" + loadRandomProviderResult.getRandomProvider().getEntropyPoolSize());
             }
 
             try {
+                if(loadRandomProviderResult == null)
+                {
+                    result.status = "failed to initialize source";
+                    return result;
+                }
                 if (!loadRandomProviderResult.getStatus())
                 {
                     result.status = "loading random data failed: " + loadRandomProviderResult.getMessage();
@@ -422,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                 } else if (randomProvider != null) {
                     result.status = "no entropy left";
                 } else {
-                    result.status = "failed to initialize source";
+                    result.status = "failed to initialize source (2)";
                 }
             } catch (Exception e) {
                 Log.w(TAG, e);
