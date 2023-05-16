@@ -11,7 +11,6 @@ import java.net.URL;
 import java.net.HttpURLConnection;
 import java.util.Scanner;
 
-// TODO Add support for random.org. Request data directly from them.
 public class RandomDotOrgEntropyManager implements IEntropyManager {
     static final String TAG = "RandomDotOrgEntropyManager";
     private final int REQUEST_ENTROPY_MAX_SIZE = 1000000 / 8;   // One million bits

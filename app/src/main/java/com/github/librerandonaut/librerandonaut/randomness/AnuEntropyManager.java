@@ -55,11 +55,9 @@ public class AnuEntropyManager implements IEntropyManager {
                 Thread.sleep(DELAY_MILLISECONDS);
                 // ANU changed their policy to one request per minute sadly.
                 // Generating attactors for 1000m radius requires 100 points.
-                // 100 points need 800 bytes of entropy.
-                // 800 bytes of entropy needs 2 requests to ANU, that means an additional minute of wait time.
-                // An alternative to ANU would be downloading a large file of random data from random.org and using that with the "File" option.
+                // 100 points need 800-1200 bytes of entropy.
+                // 1200 bytes of entropy needs 3 requests to ANU, that means 2 additional minutes of wait time.
             }
-            // TODO when there is an error with downloading the entropy, display the error in the UI
             HttpURLConnection httpConn = (HttpURLConnection) url.openConnection();
             httpConn.setRequestMethod("GET");
 

@@ -23,8 +23,8 @@ public class RandomPointsProvider implements IRandomPointsProvider {
 
     public static int getEntropyUsage(int radius) {
         int pointsCount = getPointsCount(radius);
+        // TODO: With ANU, you don't need any buffer, but with random.org, you need around 40% more. Clarify, why this is so.
         // 2 points, 4 byte per point for integer + 40% more
-        // TODO check if this is always enough (unit test...)
         return (int)((double)pointsCount * 2.0 * 4.0 * 1.40);
     }
 
