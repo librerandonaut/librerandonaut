@@ -28,12 +28,12 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 # Entropy sources
 ## random.org
 
-random.org is a true random number generator which generates random numbers from atmospheric noise. This is the fastest way to generate random numbers. The quota per day is 1 million bits, which should be enough for about 100 attractors at 1000m radius.
+random.org is a true random number generator which generates random numbers from atmospheric noise. This is the fastest way to generate attractors, since access is instantaneous and the contingent is sufficient to generate about 100 attractors at a radius of 1000 .
 
 ## ANU
 See [QRNG at the Australian National University](https://qrng.anu.edu.au/). 
 
-The original API for ANU was limited to one request per minute. For the generation of an attractor within a radius of 1000 meters several requests are needed. This leads to a waiting time of 4 minutes.
+The original API for ANU was limited to one request per minute. For the generation of an attractor within a radius of 1000 meters several requests are needed. This leads to a waiting time of about 4 minutes.
 
 ## File
 Another interesting aspect is the temporal independence between generating the entropy and applying it in the context of randonauting. You can generate entropy and use it for randonauting at any time later. The results of randonauting should be similar as if you would generate entropy directly, for example by ANU.
