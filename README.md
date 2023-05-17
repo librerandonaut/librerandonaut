@@ -6,7 +6,7 @@ LibreRandonaut is an open-source Android app for generating true random coordina
 
 It interfaces with [random.org](https://www.random.org/randomness/) as well as the [QRNG at the Australian National University](https://qrng.anu.edu.au/). From these providers it receives a list of quantum random numbers which are converted into coordinates. The Gaussian kernel density estimate of these coordinates is calculated to find the point with a statistically anomalous density.
 
-If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots and Quantum Randomness, I recommend reading [fatum_theory.txt](https://github.com/anonyhoney/fatum-en/blob/master/docs/fatum_theory.txt) that came with the original Fatum project bot that inspired Randonautica. If you have no idea what this is about and are completely new to this field, you should read [this article](https://medium.com/swlh/randonauts-how-a-random-number-generator-can-set-you-free-dfc2a2413e15).
+If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots and Quantum Randomness, I recommend reading [fatum_theory.txt](https://github.com/anonyhoney/fatum-en/blob/master/docs/fatum_theory.txt) that came with the original Fatum project bot that inspired another well-known commercial randonauting app. If you have no idea what this is about and are completely new to this field, you should read [this article](https://medium.com/swlh/randonauts-how-a-random-number-generator-can-set-you-free-dfc2a2413e15).
 
 ## Table of contents
 * [Usage](#usage)
