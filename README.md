@@ -11,7 +11,7 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 ## Table of contents
 * [Usage](#usage)
 * [Entropy sources](#entropy-sources)
-	* [ANU](#random.org)
+	* [Random.org](#random.org)
 	* [ANU](#anu)
 	* [File](#file)
 * [To-do](#to-do)
@@ -27,9 +27,9 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 - When generation finishes, press Open to open the attractor's location in a navigation app
 
 # Entropy sources
-## random.org
+## Random.org
 
-random.org is a true random number generator which generates random numbers from atmospheric noise. This is the fastest way to generate attractors, since access is instantaneous and the contingent is sufficient to generate about 100 attractors at a radius of 1000 .
+Random.org is a true random number generator which generates random numbers from atmospheric noise. This is the fastest way to generate attractors, since access is instantaneous and the contingent is sufficient to generate about 100 attractors at a radius of 1000 .
 
 ## ANU
 See [QRNG at the Australian National University](https://qrng.anu.edu.au/). 
