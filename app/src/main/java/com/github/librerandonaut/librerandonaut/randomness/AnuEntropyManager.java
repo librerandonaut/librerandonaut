@@ -16,7 +16,7 @@ import com.github.librerandonaut.librerandonaut.rngdevice.IProgressHandler;
 public class AnuEntropyManager implements IEntropyManager {
     static final String TAG = "AnuEntropyManager";
 
-    private final long DELAY_MILLISECONDS = 120000;
+    private final long DELAY_MILLISECONDS = 120000; // Even though the error reponse say 1 minute, the necessary delay is 2 minutes
     private final int REQUEST_ENTROPY_SIZE = 512;
     private final int REQUEST_ENTROPY_MAX_SIZE = 16000;
     private final String DOWNLOAD_URL = "https://qrng.anu.edu.au/API/jsonI.php?length=%s&type=hex16&size=1";
@@ -51,10 +51,8 @@ public class AnuEntropyManager implements IEntropyManager {
         for(int j = 1; j <= iterations; j++)
         {
             if(j > 1) {
-                // TODO it's 60s according to the error message, but it was never enough. find our, what the minimum wait time is.
                 Thread.sleep(DELAY_MILLISECONDS);
-                // ANU changed their policy to one request per minute sadly.
-                // Generating attactors for 1000m radius requires 100 points.
+                // Generating attractors for 1000m radius requires 100 points.
                 // 100 points need 800-1200 bytes of entropy.
                 // 1200 bytes of entropy needs 3 requests to ANU.
                 // It seems that they have a delay of 2 minutes.
