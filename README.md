@@ -29,7 +29,7 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 # Entropy sources
 ## Random.org
 
-Random.org is a true random number generator which generates random numbers from atmospheric noise. This is the fastest way to generate attractors, since access is instantaneous and the contingent is sufficient to generate about 100 attractors at a radius of 1000 .
+Random.org is a true random number generator which generates random numbers from atmospheric noise. This is the fastest way to generate attractors, since access is instantaneous and the daily contingent is sufficient to generate about 100 attractors at a radius of 1000 .
 
 ## ANU
 See [QRNG at the Australian National University](https://qrng.anu.edu.au/). 
