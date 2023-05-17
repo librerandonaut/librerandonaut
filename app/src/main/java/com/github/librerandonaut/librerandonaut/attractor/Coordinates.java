@@ -31,6 +31,6 @@ public class Coordinates {
                 Math.cos(lat0 * Math.PI / 180) * Math.cos(lat1 * Math.PI / 180) * (Math.sin(dlon / 2) * Math.sin(dlon / 2));
         double angle = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        return (int)(angle * 6371000);
+        return (int)(angle * EARTH_RADIUS);
     }
 }
