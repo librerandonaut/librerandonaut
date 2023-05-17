@@ -11,6 +11,7 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 ## Table of contents
 * [Usage](#usage)
 * [Entropy sources](#entropy-sources)
+	* [ANU](#random.org)
 	* [ANU](#anu)
 	* [File](#file)
 * [To-do](#to-do)
