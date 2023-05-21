@@ -9,6 +9,7 @@ It interfaces with [random.org](https://www.random.org/randomness/) as well as t
 If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots and Quantum Randomness, I recommend reading [fatum_theory.txt](https://github.com/anonyhoney/fatum-en/blob/master/docs/fatum_theory.txt) that came with the original Fatum project bot that inspired another well-known commercial randonauting app. If you have no idea what this is about and are completely new to this field, you should read [this article](https://medium.com/swlh/randonauts-how-a-random-number-generator-can-set-you-free-dfc2a2413e15).
 
 ## Table of contents
+* [Benefits](#benefits)
 * [Usage](#usage)
 * [Entropy sources](#entropy-sources)
 	* [Random.org](#randomorg)
@@ -18,6 +19,14 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 * [Download](#download)
 * [Screenshots](#screenshots)
 
+
+# Benefits
+- The LibreRandonaut app is and will remain completely free and opensource
+- It does not track you and spy on you
+- It is free of charge
+- You can define any radius for the generation of an attractor
+- The development version of this application supports own hardware random number generators
+- You can use this application offline (either via the file as the entropy source or via a hardware random number generator)
 
 # Usage
 - Enable GPS in your phone
