@@ -51,7 +51,7 @@ Another interesting aspect is the temporal independence between generating the e
 
 If you choose a file as entropy source, you must have a binary file with random bytes on your phone. You can generate this file with a RNG hardware device or download it from [random.org/bytes](https://www.random.org/bytes/). The LibreRandonaut app takes care not to use the same bytes from an entropy file more than once. As soon as all bytes from the file are used up for generation, a warning message is displayed if another attempt is made.
 
-If you provide a file, make sure it contains enough entropy. To generate one attractor per 1000m radius, 100 data points are required. Each data point requires 8 bytes, 1000m radius requires around 1200 bytes of entropy.
+If you provide a file, make sure it contains enough entropy. To create an attractor in a 1000m radius, about 1.2 kByte of entropy is needed.
 
 # To-do
 - Improvement of the user interface and more usability.
