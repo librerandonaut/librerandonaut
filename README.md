@@ -66,4 +66,4 @@ If you provide a file, make sure it contains enough entropy. To generate one att
 <img src="metadata/en-US/images/phoneScreenshots/1.png" width="170"> <img src="metadata/en-US/images/phoneScreenshots/2.png" width="170">
 
 # Donations
-- BTC: 1FjQbwejnsfNoZfy92LGkMhDy2ZtPBzgsd
+- BTC / BCH / BSV: 1FjQbwejnsfNoZfy92LGkMhDy2ZtPBzgsd
