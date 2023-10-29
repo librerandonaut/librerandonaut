@@ -14,7 +14,7 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 * [Entropy sources](#entropy-sources)
 	* [Random.org](#randomorg)
 	* [ANU](#anu)
-	* [File](#file)
+	* [Local entropy file](#local-entropy-file)
 * [To-do](#to-do)
 * [Download](#download)
 * [Screenshots](#screenshots)
@@ -46,10 +46,10 @@ See [QRNG at the Australian National University](https://qrng.anu.edu.au/).
 
 The original API for ANU was limited to one request per minute. For the generation of an attractor within a radius of 1000 meters several requests are needed. This leads to a waiting time of about 4 minutes.
 
-## File
+## Local entropy file
 Another interesting aspect is the temporal independence between generating the entropy and applying it in the context of randonauting. You can generate entropy and use it for randonauting at any time later. The results of randonauting should be similar as if you would generate entropy directly, for example by ANU.
 
-If you choose a file as entropy source, you must have a binary file with random bytes on your phone. You can generate this file with a RNG hardware device or download it from [random.org/bytes](https://www.random.org/bytes/). The LibreRandonaut app takes care not to use the same bytes from an entropy file more than once. As soon as all bytes from the file are used up for generation, a warning message is displayed if another attempt is made.
+If you choose a file as entropy source, you must have a binary file with random bytes saved on your phone. You can generate this file with a RNG hardware device or download it from [random.org/bytes](https://www.random.org/bytes/). The LibreRandonaut app takes care not to use the same bytes from an entropy file more than once. As soon as all bytes from the file are used up for generation, a warning message is displayed if another attempt is made.
 
 If you provide a file, make sure it contains enough entropy. To create an attractor in a 1000m radius, about 1.2 kByte of entropy is needed.
 
