@@ -18,6 +18,7 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 * [To-do](#to-do)
 * [Download](#download)
 * [Screenshots](#screenshots)
+* [Donations](#donations)
 
 
 # Benefits
