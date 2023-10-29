@@ -22,7 +22,7 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 
 
 # Benefits
-- The LibreRandonaut app is and will remain completely free and opensource
+- The LibreRandonaut app is and will remain completely free and open-source
 - It does not track you and spy on you
 - It is free of charge
 - You can define any radius for the generation of an attractor
