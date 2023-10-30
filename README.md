@@ -53,6 +53,8 @@ If you choose a file as entropy source, you must have a binary file with random 
 
 If you provide a file, make sure it contains enough entropy. To create an attractor in a 1000m radius, about 1.2 kByte of entropy is needed.
 
+Another advantage of the local entropy file is that it can be used to prepare random data prior to a trip, which can later be used for randonauting regardless of the availability of mobile network connectivity.
+
 # To-do
 - Improvement of the user interface and more usability.
 - Code includes logic for accessing a homebuilt TRNG device via the USB port. This feature has been removed from the UI to not confuse the user.
