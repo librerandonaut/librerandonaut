@@ -15,7 +15,6 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 	* [Random.org](#randomorg)
 	* [ANU](#anu)
 	* [Local entropy file](#local-entropy-file)
-* [To-do](#to-do)
 * [Download](#download)
 * [Screenshots](#screenshots)
 * [Donations](#donations)
@@ -54,11 +53,6 @@ If you choose a file as entropy source, you must have a binary file with random 
 If you provide a file, make sure it contains enough entropy. To create an attractor in a 1000m radius, about 1.2 kByte of entropy is needed.
 
 Another advantage of the local entropy file is that it can be used to prepare random data prior to a trip, which can later be used for randonauting regardless of the availability of mobile network connectivity.
-
-# To-do
-- Improvement of the user interface and more usability.
-- Code includes logic for accessing a homebuilt TRNG device via the USB port. This feature has been removed from the UI to not confuse the user.
-- The old ANU API will be scaled back until it is eventually retired. The new AWS hosted ANU API requires a API-key and is limited to 100 requests per months for the trail tier. See [quantumnumbers.anu.edu.au/faq](https://quantumnumbers.anu.edu.au/faq). Implement functionality for providing an API-key via the LibreRandonaut app.
 
 # Download
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png" alt="Get it on F-Droid" height="75">](https://f-droid.org/de/packages/com.github.librerandonaut.librerandonaut/)
