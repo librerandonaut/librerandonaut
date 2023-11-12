@@ -127,18 +127,18 @@
 
         <RadioButton
             android:id="@+id/radioButtonRandomDotOrg"
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:checked="true"
             android:text="random.org"></RadioButton>
 
         <RadioButton
             android:id="@+id/radioButtonAnu"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:text="ANU"></RadioButton>
 
         <RadioButton
             android:id="@+id/radioButtonFile"
-            android:layout_width="120dp"
+            android:layout_width="100dp"
             android:text="File"></RadioButton>
 
     </RadioGroup>
