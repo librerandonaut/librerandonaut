@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     private DeviceHandler deviceHandler = new DeviceHandler(this);
     private Uri selectedFile;
 
+    private static int roundDecimals = 7;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -305,7 +307,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
             labelAttractor.setText("");
         } else {
             Coordinates location = result.attractor.getCoordinates();
-            labelAttractor.setText(location.getLatitude() + ", " + location.getlongitude());
+            labelAttractor.setText(round(location.getLatitude()) + ", " + round(location.getlongitude()));
             String s = "approximateRadius: " + result.attractor.getAttractorTest().getApproximateRadius();
             s += "\n";
             s += "relativeDensity: " + result.attractor.getAttractorTest().getRelativeDensity();
@@ -339,10 +341,10 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         startActivity(intent);
     }
 
-    private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
+    private static double round(double value) {
+        if (roundDecimals < 0) throw new IllegalArgumentException();
 
-        long factor = (long) Math.pow(10, places);
+        long factor = (long) Math.pow(10, roundDecimals);
         value = value * factor;
         long tmp = Math.round(value);
         return (double) tmp / factor;
@@ -351,7 +353,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
 
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        labelLocation.setText(round(location.getLatitude(),7)  + ", " + round(location.getLongitude(), 7));
+        labelLocation.setText(round(location.getLatitude())  + ", " + round(location.getLongitude()));
         coordinates = new Coordinates(location.getLatitude(), location.getLongitude());
         buttonGenerate.setEnabled(true);
     }
