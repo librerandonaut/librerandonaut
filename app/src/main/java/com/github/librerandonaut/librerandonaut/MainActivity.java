@@ -339,9 +339,19 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         startActivity(intent);
     }
 
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        long factor = (long) Math.pow(10, places);
+        value = value * factor;
+        long tmp = Math.round(value);
+        return (double) tmp / factor;
+    }
+
+
     @Override
     public void onLocationChanged(@NonNull Location location) {
-        labelLocation.setText(location.getLatitude() + ", " + location.getLongitude());
+        labelLocation.setText(round(location.getLatitude(),7)  + ", " + round(location.getLongitude(), 7));
         coordinates = new Coordinates(location.getLatitude(), location.getLongitude());
         buttonGenerate.setEnabled(true);
     }
