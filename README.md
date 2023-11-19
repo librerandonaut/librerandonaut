@@ -50,7 +50,7 @@ Another interesting aspect is the temporal independence between generating the e
 
 If you choose a file as entropy source, you must have a binary file with random bytes saved on your phone. You can generate this file with a RNG hardware device or download it from [random.org/bytes](https://www.random.org/bytes/). The LibreRandonaut app takes care not to use the same bytes from an entropy file more than once. As soon as all bytes from the file are used up for generation, a warning message is displayed if another attempt is made.
 
-If you provide a file, make sure it contains enough entropy. To create an attractor in a 1000m radius, about 1.2 kByte of entropy is needed.
+If you provide a file, make sure it contains enough entropy. To create an attractor in a 1000 meter radius, about 1.2 kByte of entropy is needed.
 
 Another advantage of the local entropy file is that it can be used to prepare random data prior to a trip, which can later be used for randonauting regardless of the availability of mobile network connectivity.
 
