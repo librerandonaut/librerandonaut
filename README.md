@@ -31,7 +31,7 @@ If you're unfamiliar with Randonauting, the concepts of Probability Blind-Spots 
 # Usage
 - Enable GPS in your phone
 - Chose the entropy source
-- Set the radius or leave at the default value of 1000m
+- Set the radius or leave at the default value of 1000 meters
 - Press Generate button to start generating an attractor in the defined area around your location
 - When generation finishes, press Open to open the attractor's location in a navigation app
 
